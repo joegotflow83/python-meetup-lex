@@ -65,10 +65,7 @@ def get_drink_order(request):
         if not slots['name']:
             message = {"contentType": "PlainText", "content": "May I have a name for the order?"}
             return elicit_slot(session_attributes, 'GetDrinkOrder', slots, 'name', message)
-        # elif confirmation_status == 'Confirmed':
-        #     return delegate(session_attributes, slots)
         elif slots['size'] and slots['drink'] and slots['name']:
-            message = {"contentType":"PlainText", "content": f'Thank you for that {slots["name"]} we will have your {slots["size"]} {slots["drink"]} ready shortly!'}
             return delegate(session_attributes, slots)
         else:
             message = {"contentType": "PlainText", "content": "I'm sorry, I did not understand what you said. Could you repeat that?"}
